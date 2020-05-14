@@ -134,6 +134,33 @@ gzip analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.l
 
 
 
-## Final file
+## LD distribution
+
+1. Split data into chromosomes so I can analyze them in parallel later:
+
+```bash
+qsub -I -l walltime=2:00:00,nodes=1:ppn=10,mem=100gb
+
+for chr in {1..10}; do
+  zcat analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.ld.gz | head -n 1 > analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.chr$chr.ld
+done
+
+# run in parallel
+for chr in {1..10}; do
+  zcat analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.ld.gz | awk -v chr="$chr" '$1 == chr && $4 == chr' >> analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.chr$chr.ld &
+done
+```
+
+2. Filter SNP-TE LD files for each chromosome in parallel and generate a file only with high LD (R2 > 0.8) and other only only low LD (R2 < 0.2):
+
+```bash
+for chr in {1..10}; do
+  qsub -v CHR=$chr scripts/distribution_snp-te_high-low_ld.sh
+done
+```
+
+
+
+## Final files
 
 LD between SNPs and TEs only: `analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.ld.gz`
