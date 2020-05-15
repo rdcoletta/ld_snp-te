@@ -159,8 +159,18 @@ for chr in {1..10}; do
 done
 ```
 
+3. Use LD files above to plot distribution of SNPs in high/low LD with TEs
+
+```bash
+Rscript scripts/distribution_r2_snp-te_ld.R analysis/ld_distribution dist-LD_SNPs-TEs_high.png
+# 210268 closest SNPs in LD with a TE
+
+Rscript scripts/distribution_r2_snp-te_ld.R analysis/ld_distribution dist-LD_SNPs-TEs_low.png
+# 130117584 SNPs not in LD with a TE
+```
+
 
 
 ## Final files
 
-LD between SNPs and TEs only: `analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.ld.gz`
+LD between SNPs and TEs only: `analysis/WiDiv508_ref.B73_SNPs_not.in.TEs_allchr.TEs-combined.SNP-TE-only.ld.gz` and files in `analysis/ld_distribution` folder.
