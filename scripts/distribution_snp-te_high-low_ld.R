@@ -68,8 +68,8 @@ cat("subsetting only SNPs with highest LD to TE\n")
 LD_results_highest <- data.frame(matrix(nrow = 0, ncol = NCOL(LD_results)), stringsAsFactors = FALSE)
 colnames(LD_results_highest) <- colnames(LD_results)
 
-# create vector to make sure the same snp doesn't get picked twice
-snps.already.in.ld <- c()
+# # create vector to make sure the same snp doesn't get picked twice
+# snps.already.in.ld <- c()
 
 # get closest (highest LD) snps
 for (te in TEs.chr) {
@@ -77,9 +77,9 @@ for (te in TEs.chr) {
   # subset LD results to have only the TE being parsed
   snps_LD_with_te <- LD_results[which(LD_results[, "SNP_A"] == te | LD_results[, "SNP_B"] == te), ]
 
-  if (length(snps.already.in.ld) > 0) {
-    snps_LD_with_te <- snps_LD_with_te[which(!snps_LD_with_te[, "SNP_A"] %in% snps.already.in.ld & !snps_LD_with_te[, "SNP_B"] %in% snps.already.in.ld), ]
-  }
+  # if (length(snps.already.in.ld) > 0) {
+  #   snps_LD_with_te <- snps_LD_with_te[which(!snps_LD_with_te[, "SNP_A"] %in% snps.already.in.ld & !snps_LD_with_te[, "SNP_B"] %in% snps.already.in.ld), ]
+  # }
   
   
   if (NROW(snps_LD_with_te) > 0) {
@@ -90,17 +90,19 @@ for (te in TEs.chr) {
     if (NROW(snps_LD_with_te) > 1) {
       snps_LD_with_te <- snps_LD_with_te[which(snps_LD_with_te[, "dist_to_te"] == min(snps_LD_with_te[, "dist_to_te"])), ]
     }
-    # get closest snp
-    snp.selected <- apply(snps_LD_with_te, MARGIN = 1, function(row) {
-      marker1 <- row["SNP_A"]
-      marker2 <- row["SNP_B"]
-      if (grepl(paste0("^S", chr, "_"), marker1)) {
-        return(marker1)
-      } else {
-        return(marker2)
-      }
-    })
-    snps.already.in.ld <- append(snps.already.in.ld, as.character(snp.selected))
+    
+    ## get closest snp
+    # snp.selected <- apply(snps_LD_with_te, MARGIN = 1, function(row) {
+    #   marker1 <- row["SNP_A"]
+    #   marker2 <- row["SNP_B"]
+    #   if (grepl(paste0("^S", chr, "_"), marker1)) {
+    #     return(marker1)
+    #   } else {
+    #     return(marker2)
+    #   }
+    # })
+    # snps.already.in.ld <- append(snps.already.in.ld, as.character(snp.selected))
+    
     # add closest SNP in LD with TE into new df
     LD_results_highest <- rbind(LD_results_highest, snps_LD_with_te)
     

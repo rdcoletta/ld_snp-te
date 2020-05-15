@@ -163,7 +163,7 @@ done
 
 ```bash
 Rscript scripts/distribution_r2_snp-te_ld.R analysis/ld_distribution dist-LD_SNPs-TEs_high.png
-# 210268 closest SNPs in LD with a TE
+# 210773 closest SNPs in LD with a TE
 
 Rscript scripts/distribution_r2_snp-te_ld.R analysis/ld_distribution dist-LD_SNPs-TEs_low.png
 # 130117584 SNPs not in LD with a TE
