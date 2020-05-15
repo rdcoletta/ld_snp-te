@@ -16,7 +16,6 @@ args <- commandArgs(trailingOnly = TRUE)
 # you should provide 2 arguments
 if (length(args) != 2) {
   stop("incorrect number of arguments provided.
-       
        Usage:
        ")
 }
@@ -26,7 +25,6 @@ ld.folder <- args[1]
 plot_name <- args[2]
 
 # setwd("~/projects/ld_snp-te/analysis/")
-# 
 # ld.folder = "ld_distribution"
 # plot_name <- "dist-LD_SNPs-TEs_high.png"
 # plot_name <- "dist-LD_SNPs-TEs_low.png"
