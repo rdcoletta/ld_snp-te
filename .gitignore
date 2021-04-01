@@ -2,3 +2,4 @@ data/*
 analysis/*
 TE_calls_to_vcf_forRafa.txt
 .DS_Store
+tests/*
