@@ -1,12 +1,14 @@
 #!/bin/bash
-#PBS -l walltime=8:00:00,nodes=1:ppn=1,mem=110gb
-#PBS -o /home/hirschc1/della028/projects/ld_snp-te
-#PBS -e /home/hirschc1/della028/projects/ld_snp-te
-#PBS -V
-#PBS -N hmp2plk
-#PBS -M della028@umn.edu
-#PBS -m abe
-#PBS -r n
+#SBATCH --time=1:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=100gb
+#SBATCH -J hmp2plk
+#SBATCH -o /home/hirschc1/della028/projects/ld_snp-te/%x_%j.out
+#SBATCH -e /home/hirschc1/della028/projects/ld_snp-te/%x_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=della028@umn.edu
+#SBATCH --no-requeue
 
 # go to project folder
 cd ~/projects/ld_snp-te/
