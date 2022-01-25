@@ -1,5 +1,10 @@
 # LD between SNPs and TEs
 
+by Rafael Della Coletta and Candice Hirsch
+
+> The goal of this analysis is calculate LD between SNPs and TEs from a maize diversity panel of 500+ lines. This project is part of the research published by [Qiu et al (2021, G3)](https://doi.org/10.1093/g3journal/jkab238). For all codes associated with this research, please see [this Github repo](https://github.com/HirschLabUMN/TE_variation).
+
+
 Path to the files:
 
 ```bash
